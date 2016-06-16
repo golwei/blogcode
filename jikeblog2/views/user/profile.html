@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Profile</title>
+	{{template "head.html".}}
+</head>
+<body>
+<div>
+
+{{template "header.html" .}}
+
+<div id="wrap">
+	<div class="container">
+		<div class="col-sm-3">
+			<h3><a href="{{.u.Url}}">{{.u.Nick}}</a></h3>
+			<pre>{{.u.Info}}</pre>
+
+			<table class="table">
+				<tr>
+					<td>Followers</td>
+					<td>Following</td>
+				</tr>
+				<tr>
+					<td>{{.u.Followers}}</td>
+					<td>{{.u.Following}}</td>
+				</tr>
+			</table>
+
+			<h4>最热文章</h4>
+			<div>...</div>
+
+			<h4>最新文章</h4>
+			<div>...</div>
+		</div>
+	<div class="col-sm-9">
+		{{range $index,$value:=.articles}}
+
+		<div>
+			<h2><a href="/article/{{$value.Id}}">{{$value.Title}}</a></h2>
+
+			<div>
+				<p>
+					<span>{{$value.Time}}</span>
+
+					{{ if $.user}}
+						{{if eq $value.Author.Id $.user.Id}}
+							<span class="pull-right">
+								<a href="/article/edit/{{$value.Id}}">编辑</a>
+								<a href="/article/del/{{$value.Id}}">删除</a>
+							</span>
+						{{end}}
+					{{end}}
+				</p>
+			</div>
+
+			<div>
+				<pre>{{$value.Content}}</pre>
+			</div>
+		</div>
+		{{end}}
+	</div>
+</div>
+
+	
+
+	{{template "footer.html"}}
+</div>
+</body>
+</html>

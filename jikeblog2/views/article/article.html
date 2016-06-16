@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New</title>
+	{{template "head.html" .}}
+</head>
+<body>
+
+{{template "header.html" .}}
+
+<div id="wrap">
+	<div  class="container">
+		<div class="col-sm-7">
+			<h2>{{.article.Title}}</h2>
+			<p>
+				<span><a href="{{.article.Author.Id}}">{{.article.Author.Nick}}</a></span>
+				<span>
+					{{.article.Time}}
+				</span>
+			</p>
+			<div>
+				<pre>{{.article.Content}}</pre>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
